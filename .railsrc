@@ -1,0 +1,43 @@
+require 'rubygems'
+require 'wirble'
+Wirble.init
+#Wirble.colorize
+
+require 'irb/completion'
+require 'irb/ext/save-history'
+
+IRB.conf[:SAVE_HISTORY] = 100
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history" 
+#IRB.conf[:PROMPT_MODE]  = :SIMPLE
+
+# Just for Rails...
+if rails_env = ENV['RAILS_ENV']
+  rails_root = File.basename(Dir.pwd)
+  prompt = "#{rails_root}[#{rails_env.sub('production', 'prod').sub('development', 'dev')}]"
+  IRB.conf[:PROMPT] ||= {}
+  IRB.conf[:PROMPT][:RAILS] = {
+    :PROMPT_I => "#{prompt}> ",
+    :PROMPT_S => "#{prompt}* ",
+    :PROMPT_C => "#{prompt}? ",
+    :RETURN   => "=> %s\n" 
+  }
+  IRB.conf[:PROMPT_MODE] = :RAILS
+ 
+  # Called after the irb session is initialized and Rails has
+  # been loaded (props: Mike Clark).
+  IRB.conf[:IRB_RC] = Proc.new do
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+#    ActiveRecord::Base.instance_eval { alias :[] :find }
+  end
+end
+
+def sql(query)
+  ActiveRecord::Base.connection.select_all(query)
+end
+
+begin
+  require 'hirb'
+  Hirb.enable
+rescue LoadError
+  puts "Error loading Hirb. Run 'sudo gem install hirb'"
+end

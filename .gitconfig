@@ -1,0 +1,17 @@
+[user]
+	name = Oleg Keene
+	email = ol.keene@gmail.com
+[alias]
+	co = checkout
+  br = branch
+	remotes = remote -v
+	logp = log --pretty=format:\"%h %an: %s\"
+	unstage = reset HEAD
+	amend = commit --amend -C HEAD
+	st = status
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+  autocrlf = false

@@ -1,0 +1,100 @@
+Account.last.user
+User.last
+User.first
+User.find(2)
+User.find(3054).account
+User.find(3054).account.send :first_coins_notification
+Account.count
+User.find(3054).account.first_coins_notification
+reload!
+User.find(3054).account.first_coins_notification
+User.find(3054).account.first_coins_notification
+reload!
+User.find(3054).account.first_coins_notification
+User.find(3054).account.class
+User.find(3054).account.first_coins_notification
+exit
+User.find(3054).account.first_coins_notification
+User.find(3054).account
+reload!
+User.find(3054).account.first_coins_notification
+reload!
+User.find(3054).account.first_coins_notification
+reload!
+User.find(3054).account.first_coins_notification
+reload!
+User.find(3054).account.first_coins_notification
+exit
+User.find(3054).account.first_coins_notification
+User.find(3054).account.size
+User.find(3054).account.orders.size
+User.find(3054).account.orders.count
+Account.find(982).orders.count
+Account.find(982).orders.size
+Account.count
+reload!
+Order.find(154).first_coins_notification
+Order.find(154).send :first_coins_notification
+Order.find(154).send :send_notification
+Order.find(154).send :send_notifications
+kmnklmeload!
+Order.find(154).account.user
+Order.find(154).account.user.notifications
+Time.now
+Time.now +6.hours
+Time.now + 6.hours
+Order.find(154).send :send_notifications
+reload!
+Order.find(154).send :send_notifications
+UserNotification.first
+UserNotification.first.deliver!
+UserNotification.first.user
+reload!
+UserNotification.first.deliver!
+reload!
+User.find(3054).surveys.with_statuses(Survey::STATUS_STARTED, Survey::STATUS_FINISHED).exists?
+reload!
+User.find(3054).surveys.with_statuses(Survey::STATUS_STARTED, Survey::STATUS_FINISHED).exists?
+User.find(3054).
+User.ind(3054)..surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+User.find(3054).surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+reload!
+User.find(3054).surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+class UsersAddRunAnySurvey < ActiveRecord::Migration
+  def self.up
+    add_column :users, :run_any_survey, :boolean, :default => 0
+    User.all.each do |u|
+      u.update_attribute :run_any_survey, true if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+    end
+    add_index :users, [:run_any_survey, :last_seen_at]
+  end
+  def self.down
+    remove_column :users, :run_any_survey
+  end
+end
+UsersAddRunAnySurvey.up
+User.all.each do |u|
+      u.update_attribute :run_any_survey, true if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+    end
+User.find(3054.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?)
+User.find)(3054.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?)
+User.find(3054).surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+reload!
+User.all.each do |u|
+#      u.update_attribute :run_any_survey, true if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+      if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+        u.run_any_survey = true
+        u.save!
+      end
+    end
+User.all.each do |u|
+#      u.update_attribute :run_any_survey, true if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+      if u.surveys.with_statuses([Survey::STATUS_STARTED, Survey::STATUS_FINISHED]).exists?
+        u.run_any_survey = true
+        u.save
+      end
+    end
+exit
+Jobs::EmailReminderJob.run
+Jobs::EmailReminderJob
+exit
