@@ -1,4 +1,4 @@
-load File.dirname(__FILE__) + '/.railsrc' if $0 =~ /irb/ && ENV['RAILS_ENV']
+load File.dirname(__FILE__) + '/.railsrc' if $0 =~ /(rails|irb)/ && ENV['RAILS_ENV']
 
 # Enables items.map(&:name) in regular irb
 class Symbol
