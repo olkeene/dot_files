@@ -1,8 +1,17 @@
-load File.dirname(__FILE__) + '/.railsrc' if $0 =~ /(rails|irb)/ && ENV['RAILS_ENV']
+require 'irb/completion'
+require 'irb/ext/save-history'
+require 'rubygems'
+%x{gem install 'wirble' --no-ri --no-rdoc} unless Gem.available?('wirble')
+Gem.refresh 
+require 'wirble'
 
-# Enables items.map(&:name) in regular irb
-class Symbol
-  def to_proc
-    lambda {|*args| args.shift.__send__(self, *args)}
-  end
-end
+Wirble.init
+Wirble.colorize
+
+colors = Wirble::Colorize.colors.merge({
+ :object_class => :purple,
+ :symbol => :purple,
+ :symbol_prefix => :purple
+})
+Wirble::Colorize.colors = colors
+
